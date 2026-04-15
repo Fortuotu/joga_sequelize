@@ -16,11 +16,13 @@ sequelize
         console.log('Unable to connect to the database', err);
     });
 
-const articleRouter = require('./routes/article');
-app.use('/', articleRouter);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
+
+const articleRouter = require('./routes/article');
+app.use('/', articleRouter);
+app.use('/article', articleRouter);
+app.use('/admin/article', articleRouter);
 
 app.get('/', (req, res) => {
     res.json({message: "welcome to app"});
